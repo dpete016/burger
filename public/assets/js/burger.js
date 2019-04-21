@@ -1,6 +1,6 @@
 $(function() {
     
-    $(".nomburger").on("click", function(event){
+    $(".nomburger-btn").on("click", function(event){
         event.preventDefault();
 
         var id = $(this).data("id");
@@ -8,27 +8,29 @@ $(function() {
             devoured: 1
         };
 
-        $ajax("/api/burgers" + id, {
+        $.ajax(`/api/burgers/${id}`, {
             type: "PUT",
             data: devouredState
         }).then(
             function() {
                 console.log("Burger nommed", devouredState);
-                location.reload();
+                // location.reload();
             }
         );
         
     });
 
-    $(".create-form").on("submit", function(event) {
+    $("#burgerenter").on("click", function(event) {
 
         event.preventDefault();
 
+        console.log("hit");
+
         var newburger = {
-            burger_name: $("#newburger").val().trim(),
+            burgername: $("#newburger").val().trim(),
             devoured: 0,
         };
-
+        console.log(newburger)
         $.ajax("/api/burgers", {
             type: "POST",
             data: newburger
@@ -45,7 +47,7 @@ $(function() {
         var id = $(this).data("id");
 
         $.ajax("/api/burgers/" + id, {
-            type: "DELTE"
+            type: "DELETE"
         }).then(
             function() {
                 console.log("delete burger", id);
@@ -54,4 +56,6 @@ $(function() {
             }
         );
     });
+
+
 });

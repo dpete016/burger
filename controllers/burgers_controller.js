@@ -10,16 +10,18 @@ router.get("/", function(req,res) {
             burger: data
         };
         console.log(hbsObject);
+        res.render("index", { burger: data });
     });
 });
 
 router.post("/api/burgers", function(req, res) {
+    console.log("dp",req.body)
     burger.create([
-        "name", "devoured"
-    ], [
-        req.body.name, req.body.devoured
-    ], function(result) {
-        res.json({ id: result.insertId });
+        "burgername", "devoured"
+    ], [req.body.burgername, req.body.devoured], 
+        
+     function(result) {
+       res.redirect("/")
     });
 });
 
@@ -30,13 +32,8 @@ router.put("/api/burgers/:id", function(req, res) {
 
     burger.update({
         devoured: req.body.devoured
-    }, condition, function(result) {
-        if (results.changedRows == 0) {
-
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+    }, condition, function() {
+       res.redirect("/")
     });
 });
 

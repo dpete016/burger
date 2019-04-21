@@ -7,7 +7,7 @@ var burger = {
         });
     },
 
-    create: function(col, vals, cb) {
+    create: function(cols, vals, cb) {
         orm.create("burgers", cols, vals, function(res) {
             cb(res);
         });
@@ -26,3 +26,4 @@ var burger = {
 };
 
 module.exports = burger;
+
