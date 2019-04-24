@@ -14,9 +14,14 @@ $(function() {
         }).then(
             function() {
                 console.log("Burger nommed", devouredState);
-                // location.reload();
+                location.reload();
             }
         );
+
+        // var noise = document.getElementById("Eatingnoise");
+        // function playAudio() {
+        //     noise.play();
+        // }
         
     });
 
